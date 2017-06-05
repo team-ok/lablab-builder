@@ -1,0 +1,134 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-05-31 10:44+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/"
+
+#: admin/class-lablab-builder-admin.php:90
+#, php-format
+msgid ""
+"%1$s requires %2$s and a child theme based on the %3$s to work properly. "
+"Please make sure both of them are installed and activated before activating "
+"%1$s. For now, the plugin has been deactivated."
+msgstr ""
+
+#: admin/class-lablab-builder-admin.php:171
+#: includes/lablab-builder-options-fields.php:4
+msgid "Lablab Builder Options"
+msgstr ""
+
+#: includes/__class-lablab-module-builder.php:276
+#: includes/class-lablab-module-builder.php:266
+msgid "Column Width"
+msgstr ""
+
+#: includes/class-lablab-column-width-options.php:132
+msgid "Current width"
+msgstr ""
+
+#: includes/class-lablab-column-width-options.php:133
+msgid "Fills up this row"
+msgstr ""
+
+#: includes/class-lablab-column-width-options.php:134
+msgid "Fits in this row"
+msgstr ""
+
+#: includes/class-lablab-column-width-options.php:135
+msgid "Drops to the next row"
+msgstr ""
+
+#: includes/class-lablab-column-width-options.php:136
+msgid "Pushes following elements to the next row"
+msgstr ""
+
+#: includes/class-lablab-column-width-options.php:137
+msgid "Fills up the previous row"
+msgstr ""
+
+#: includes/class-lablab-column-width-options.php:138
+msgid "Moves to the previous row"
+msgstr ""
+
+#: includes/class-lablab-field-builder.php:74
+msgid "Content Elements"
+msgstr ""
+
+#: includes/class-lablab-field-builder.php:85
+msgid "Add Module"
+msgstr ""
+
+#: includes/class-lablab-field-builder.php:104
+msgid "Sorry, no registered modules found."
+msgstr ""
+
+#: includes/class-lablab-field-builder.php:124
+msgid "Content Area"
+msgstr ""
+
+#: includes/class-lablab-field-builder.php:137
+msgid "Add content area"
+msgstr ""
+
+#: includes/lablab-builder-options-fields.php:8
+msgid "Design"
+msgstr ""
+
+#: includes/lablab-builder-options-fields.php:24
+msgid "Default Column Width"
+msgstr ""
+
+#: includes/lablab-builder-options-fields.php:27
+msgid ""
+"Set the default column width option (will be pre-selected when a new module "
+"is added)."
+msgstr ""
+
+#: includes/lablab-builder-options-fields.php:49
+msgid "Max Content Wrapper Width"
+msgstr ""
+
+#: includes/lablab-builder-options-fields.php:52
+msgid "Set the maximum width (in pixels) of the theme's main content wrapper."
+msgstr ""
+
+#: includes/lablab-builder-options-fields.php:70
+msgid "Highlight Color"
+msgstr ""
+
+#: includes/lablab-builder-options-fields.php:73
+msgid "Set the color to be used for highlighting."
+msgstr ""
+
+#. Name of the plugin
+msgid "Lablab Builder"
+msgstr ""
+
+#. Description of the plugin
+msgid ""
+"Lablab Builder is a modular WordPress page builder plugin that combines the "
+"flexibility of the Beans framework with the extendability of Advanced Custom "
+"Fields (ACF)."
+msgstr ""
+
+#. URI of the plugin
+msgid "https://github.com/team-ok/lablab-builder"
+msgstr ""
+
+#. Author of the plugin
+msgid "Timo Klemm"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://github.com/team-ok"
+msgstr ""

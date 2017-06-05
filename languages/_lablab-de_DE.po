@@ -1,0 +1,252 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Lablab Builder Slideshow Module\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-05-31 10:49+0000\n"
+"PO-Revision-Date: 2017-05-31 11:39+0000\n"
+"Last-Translator: klemm <klemm@phil.hhu.de>\n"
+"Language-Team: German\n"
+"Language: de-DE\n"
+"Plural-Forms: nplurals=2; plural=n != 1\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco - https://localise.biz/"
+
+#: acf-json/blab-slideshow-fields.php:7
+msgid "Settings Slides"
+msgstr "Einstellungen Slides"
+
+#: acf-json/blab-slideshow-fields.php:23
+msgid "Slides erstellen"
+msgstr ""
+
+#: acf-json/blab-slideshow-fields.php:38
+msgid "Slide hinzufügen"
+msgstr ""
+
+#: acf-json/blab-slideshow-fields.php:59
+msgid "Inhalte eingeben"
+msgstr ""
+
+#: acf-json/blab-slideshow-fields.php:62
+msgid ""
+"Bei Wahl der Option 'Automatisch von einer Seite' werden Überschrift, "
+"Beitragsbild und Auszugstext (falls vorhanden) der angebenen Seite für den "
+"slide genutzt."
+msgstr ""
+
+#: acf-json/blab-slideshow-fields.php:71
+msgid "Manuell"
+msgstr ""
+
+#: acf-json/blab-slideshow-fields.php:72
+msgid "Automatisch von einer Seite"
+msgstr ""
+
+#: acf-json/blab-slideshow-fields.php:83
+msgid "Seite auswählen"
+msgstr ""
+
+#: acf-json/blab-slideshow-fields.php:114
+msgid "Slide-Typ"
+msgstr ""
+
+#: acf-json/blab-slideshow-fields.php:134
+msgid "Farbfläche"
+msgstr ""
+
+#: acf-json/blab-slideshow-fields.php:135 
+#: acf-json/blab-slideshow-fields.php:148
+msgid "Bild"
+msgstr ""
+
+#: acf-json/blab-slideshow-fields.php:136 
+#: acf-json/blab-slideshow-fields.php:187
+msgid "Video"
+msgstr ""
+
+#: acf-json/blab-slideshow-fields.php:137 
+#: acf-json/blab-slideshow-fields.php:219
+msgid "Iframe"
+msgstr ""
+
+#: acf-json/blab-slideshow-fields.php:222
+msgid "Iframe-Code (z.B. von Youtube) hier einfügen"
+msgstr ""
+
+#: acf-json/blab-slideshow-fields.php:251
+msgid "Farbe auswählen"
+msgstr ""
+
+#: acf-json/blab-slideshow-fields.php:279
+msgid "Overlay-Überschrift"
+msgstr ""
+
+#: acf-json/blab-slideshow-fields.php:298
+msgid "Overlay-Text"
+msgstr ""
+
+#: acf-json/blab-slideshow-fields.php:317
+msgid "Position des Text-Overlays"
+msgstr ""
+
+#: acf-json/blab-slideshow-fields.php:329
+msgid "Mitte"
+msgstr ""
+
+#: acf-json/blab-slideshow-fields.php:330
+msgid "Oben"
+msgstr ""
+
+#: acf-json/blab-slideshow-fields.php:331
+msgid "Rechts"
+msgstr ""
+
+#: acf-json/blab-slideshow-fields.php:332
+msgid "Unten"
+msgstr ""
+
+#: acf-json/blab-slideshow-fields.php:333
+msgid "Links"
+msgstr ""
+
+#: acf-json/blab-slideshow-fields.php:344
+msgid "Overlay-Hintergrund"
+msgstr ""
+
+#: acf-json/blab-slideshow-fields.php:347
+msgid "Text auf Kontrastfläche darstellen?"
+msgstr ""
+
+#: acf-json/blab-slideshow-fields.php:363
+msgid "Link"
+msgstr ""
+
+#: acf-json/blab-slideshow-fields.php:383
+msgid "Kein Link"
+msgstr ""
+
+#: acf-json/blab-slideshow-fields.php:384
+msgid "Intern"
+msgstr ""
+
+#: acf-json/blab-slideshow-fields.php:385
+msgid "Extern"
+msgstr ""
+
+#: acf-json/blab-slideshow-fields.php:396
+msgid "Interner Link"
+msgstr ""
+
+#: acf-json/blab-slideshow-fields.php:432
+msgid "Externer Link"
+msgstr ""
+
+#: acf-json/blab-slideshow-fields.php:463
+msgid "Allgemeine Einstellungen"
+msgstr ""
+
+#: acf-json/blab-slideshow-fields.php:479
+msgid "Breite des Sliders"
+msgstr ""
+
+#: acf-json/blab-slideshow-fields.php:482
+msgid "Volle Breite oder Wert in Pixel"
+msgstr ""
+
+#: acf-json/blab-slideshow-fields.php:491
+msgid "volle Breite"
+msgstr ""
+
+#: acf-json/blab-slideshow-fields.php:502
+msgid "Höhe des Sliders"
+msgstr ""
+
+#: acf-json/blab-slideshow-fields.php:505
+msgid "Wert in Pixel"
+msgstr ""
+
+#: acf-json/blab-slideshow-fields.php:523
+msgid "Automatisch starten"
+msgstr ""
+
+#: acf-json/blab-slideshow-fields.php:526
+msgid "Slider automatisch starten?"
+msgstr ""
+
+#: acf-json/blab-slideshow-fields.php:542
+msgid "Autoslide-Intervall"
+msgstr ""
+
+#: acf-json/blab-slideshow-fields.php:545
+msgid "Länge des Intervalls zwischen zwei slides (in Sekunden)"
+msgstr ""
+
+#: acf-json/blab-slideshow-fields.php:571
+msgid "Animation der Übergänge"
+msgstr ""
+
+#: acf-json/blab-slideshow-fields.php:583
+msgid "Einblenden"
+msgstr ""
+
+#: acf-json/blab-slideshow-fields.php:584
+msgid "Schieben"
+msgstr ""
+
+#: acf-json/blab-slideshow-fields.php:585
+msgid "Vergrößern"
+msgstr ""
+
+#: acf-json/blab-slideshow-fields.php:586
+msgid "Wischen"
+msgstr ""
+
+#: acf-json/blab-slideshow-fields.php:597
+msgid "Dauer der Animation"
+msgstr ""
+
+#: acf-json/blab-slideshow-fields.php:600
+msgid "Wert in Millisekunden"
+msgstr ""
+
+#: acf-json/blab-slideshow-fields.php:618
+msgid "Ken Burns-Effekt"
+msgstr ""
+
+#: acf-json/blab-slideshow-fields.php:621
+msgid "Ken Burns-Effekt (langsames Hereinzoomen und Bewegen) aktivieren?"
+msgstr ""
+
+#: acf-json/blab-slideshow-fields.php:637
+msgid "Dauer des Ken Burns-Effekts"
+msgstr ""
+
+#: acf-json/blab-slideshow-fields.php:640
+msgid "Wert in Sekunden"
+msgstr ""
+
+#: template/lablab-slideshow.php:79
+msgid "Read More"
+msgstr ""
+
+#. Name of the plugin
+msgid "Lablab Builder Slideshow Module"
+msgstr ""
+
+#. Description of the plugin
+msgid "Adds an slideshow module to lablab builder."
+msgstr ""
+
+#. URI of the plugin
+msgid "https://github.com/team-ok/lablab-builder"
+msgstr ""
+
+#. Author of the plugin
+msgid "Timo Klemm"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://github.com/team-ok"
+msgstr ""
