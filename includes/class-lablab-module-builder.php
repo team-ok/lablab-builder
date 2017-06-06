@@ -99,7 +99,7 @@ abstract class Lablab_Module_Builder {
 
 	/**
 	 * The javascript file(s) to be included on public pages, but only when the module is being used.
-	 * May be either an absolute path to a folder containing js files or an url of a single file.
+	 * May be either an absolute path to a folder containing js files or a url of a single file.
 	 * In case of a folder each js file found will be included.
 	 *
 	 * @since     1.0.0
@@ -123,6 +123,7 @@ abstract class Lablab_Module_Builder {
 
 	/**
 	 * The uikit core components to be included (array of uikit core component names).
+	 * For a list of available uikit core components, see https://getuikit.com/v2/docs/core.html
 	 *
 	 * @since     1.0.0
 	 * @access    public
@@ -133,6 +134,7 @@ abstract class Lablab_Module_Builder {
 
 	/**
 	 * The uikit add-on components to be included (array of uikit add-on component names).
+	 * For a list of available uikit add-on components, see https://getuikit.com/v2/docs/components.html
 	 *
 	 * @since     1.0.0
 	 * @access    public
@@ -218,30 +220,67 @@ abstract class Lablab_Module_Builder {
 	}
 
 
+	/**
+	 * Enqueue javascript files only on admin pages.
+	 *
+	 * @since    1.0.0
+	 * @access   public
+	 */
 	public function enqueue_admin_scripts(){
 
 		$this->enqueue_assets( $this->admin_js, 'js' );
 		
 	}
 
+
+	/**
+	 * Enqueue stylesheets only on admin pages.
+	 * 
+	 * @since    1.0.0
+	 * @access   public
+	 */
 	public function enqueue_admin_styles(){
 
 		$this->enqueue_assets( $this->admin_css, 'css' );
 
 	}
 
+
+	/**
+	 * Enqueue javascript files on public pages, but only when the module is being used.
+	 *
+	 * @since    1.0.0
+	 * @access   public
+	 */
 	public function enqueue_public_scripts(){
 
 		$this->enqueue_assets( $this->public_js, 'js' );
 		
 	}
 
+	/**
+	 * Enqueue stylesheets on public pages, but only when the module is being used.
+	 *
+	 * @since    1.0.0
+	 * @access   public
+	 */
 	public function enqueue_public_styles(){
 
 		$this->enqueue_assets( $this->public_css, 'css' );
 
 	}
 
+
+	/**
+	 * Enqueue css stylesheets or javascript files of the module.
+	 * The asset source and type are set in the module subclass.
+	 * The default values of dependencies, the media type (when enqueuing stylesheets) and the in_footer setting (when enqueuing javascript files) can be overwritten dynamically by hooking to a filter.
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 * @param    string    $asset_src    The absolute path to a folder containing asset files or the url of a single file.
+	 * @param    string    $type         The type of asset to be enqueued. May be either 'css' or 'js'.
+	 */
 	private function enqueue_assets( $asset_src, $type ){
 
 		if ( empty( $asset_src ) || empty( $type ) ){
@@ -249,7 +288,10 @@ abstract class Lablab_Module_Builder {
 			return;
 		}
 
-		$enq_function = ( $type === 'css' ? 'wp_enqueue_style' : 'wp_enqueue_script' );
+		$asset_url = '';
+		$dependencies = array();
+		$media = 'all';
+		$in_footer = false;
 
 		// if a path to a directory is provided
 		if ( is_dir( $asset_src ) ){
@@ -269,54 +311,77 @@ abstract class Lablab_Module_Builder {
 
 				// use filename based enqueue handle to prevent multiple enqueues of the same file (e.g. if two modules need to include the same css files)
 				$asset_handle = str_replace( '.' . $type, '', $file );
-				$enq_function( $asset_handle, esc_url_raw( $asset_url ), array(), $this->version );
 
 			endwhile;
 
+		// if a url is provided
 		} elseif ( pathinfo( $asset_src, PATHINFO_EXTENSION ) === $type && filter_var( $asset_src, FILTER_VALIDATE_URL ) !== false ){
 
 			// use filename based enqueue handle to prevent multiple enqueues of the same file (e.g. if two modules need to include the same js files)
 			$asset_handle = substr( strrchr( $asset_src, '/' ), 1, - ( strlen( $type ) + 1 ) );
 
-			$enq_function( $asset_handle, esc_url_raw( $asset_src ), array(), $this->version );
+			$asset_url = $asset_src;
 
+		}
+
+		if ( $asset_url ){
+
+			// allow filtering of dependencies
+			// $asset_handle and $type may be used in a conditional statement for dynamic filtering
+			$dependencies = (array) apply_filters( 'lablab_enqueue_dependencies', $dependencies, $asset_handle, $type );
+
+			// enqueue asset
+			if ( $type === 'css' ){
+
+				// allow filtering of media type
+				// $asset_handle may be used in a conditional statement for dynamic filtering
+				$media = apply_filters( 'lablab_enqueue_media_type', $media, $asset_handle );
+
+				wp_enqueue_style( $asset_handle, esc_url_raw( $asset_url ), $dependencies, $this->version, $media );
+
+			} elseif ( $type === 'js' ) {
+
+				// allow filtering of 'in_footer' setting
+				// $asset_handle may be used in a conditional statement for dynamic filtering
+				$in_footer = apply_filters( 'lablab_enqueue_in_footer', $in_footer, $asset_handle );
+
+				wp_enqueue_script( $asset_handle, esc_url_raw( $asset_url ), $dependencies, $this->version, $in_footer );
+			}
 		}
 
 	}
 
 
+	/**
+	 * Enqueue uikit components to the beans compiler.
+	 *
+	 * @since    1.0.0
+	 * @access   public
+	 */
 	public function enqueue_uikit_scripts(){
-
-		// bail early if not using beans framework
-		if ( ! function_exists( 'beans_uikit_enqueue_components' ) ){
-			return;
-		}
 
 		if ( ! empty( $this->uikit_core ) ) {
 
-			if ( ! is_array( $this->uikit_core ) ){
-
-				$this->uikit_core = array( $this->uikit_core );
-			}
-
-			beans_uikit_enqueue_components( $this->uikit_core );
+			beans_uikit_enqueue_components( (array) $this->uikit_core );
 		}	
 
 		if ( ! empty( $this->uikit_addons ) ) {
 
-			if ( ! is_array( $this->uikit_addons ) ){
-
-				$this->uikit_addons = array( $this->uikit_addons );
-			}
-
-			beans_uikit_enqueue_components( $this->uikit_addons, 'add-ons' );
+			beans_uikit_enqueue_components( (array) $this->uikit_addons, 'add-ons' );
 		}
 	}
 
+
+	/**
+	 * Add less fragments to the beans compiler.
+	 *
+	 * @since    1.0.0
+	 * @access   public
+	 */
 	public function add_less_fragments(){
 
-		// bail early if no less fragments provided or not using beans framework
-		if ( empty( $this->less_fragments ) || ! function_exists( 'beans_compiler_add_fragment' ) ){
+		// bail early if no less fragments provided
+		if ( empty( $this->less_fragments ) ){
 
 			return;
 		}
@@ -349,12 +414,26 @@ abstract class Lablab_Module_Builder {
 
 	}
 
-	public function admin_ajax_hooks(){
 
+	/**
+	 * Define ajax hooks for logged-in users.
+	 *
+	 * @since    1.0.0
+	 * @access   public
+	 */
+	public function admin_ajax_hooks(){
+		// to be overwritten by module subclass
 	}
 
+
+	/**
+	 * Define ajax hooks for visitors.
+	 *
+	 * @since    1.0.0
+	 * @access   public
+	 */
 	public function public_ajax_hooks(){
-		
+		// to be overwritten by module subclass
 	}
 
 
@@ -363,12 +442,13 @@ abstract class Lablab_Module_Builder {
 	 *
 	 * @since     1.0.0
 	 * @access    private
+	 * @return    array    An associative array holding the field definitions for the grid column width select field that every module incorporates.
 	 */
 	private function build_column_width_field(){
 
 		$options = new Lablab_Column_Width_Options();
 
-		$this->column_width_field = array(
+		$column_width_field = array(
 			'key' => 'field_lablab_column_width_' . sanitize_title( $this->title ),
 			'label' => __('Column Width', 'lablab'),
 			'name' => 'lablab-column-width',
@@ -392,20 +472,23 @@ abstract class Lablab_Module_Builder {
 		);
 
 		// allow filtering
-		$column_width_field_ = apply_filters('lablab_column_width_field', $this->column_width_field);
+		$__column_width_field = apply_filters('lablab_column_width_field', $column_width_field);
 
-		if ( ! empty( $column_width_field_ ) && is_array( $column_width_field_ ) ){
+		if ( ! empty( $__column_width_field ) && is_array( $__column_width_field ) ){
 
-			$this->column_width_field = $column_width_field_;
+			$column_width_field = $__column_width_field;
 		}
+
+		return $column_width_field;
 	}
 
 
 	/**
-	 * Build module fields out of acf field group data extracted from a json file.
+	 * Build module fields out of acf field group data extracted from a json or php file.
 	 *
 	 * @since     1.0.0
 	 * @access    private
+	 * @return    array    A multidimensional associative array holding the module field definitions.
 	 */
 	private function build_module_fields(){
 
@@ -461,7 +544,7 @@ abstract class Lablab_Module_Builder {
 
 	    }
 
-	    $this->fields = $fields;
+	    return $fields;
 	}
 
 
@@ -472,7 +555,7 @@ abstract class Lablab_Module_Builder {
 	 * @access   private
 	 * @param    string    $file    Path to a json file.
 	 * @param    string    $dir     Path to a directory containing a json file.
-	 * @return   array|false        Either an array containing acf field data or false if validation fails.
+	 * @return   array|null         Either an array containing acf field data or null if validation fails.
 	 */
 	private function validate_json_fields( $file, $dir = null ){
     	
@@ -485,7 +568,7 @@ abstract class Lablab_Module_Builder {
     	
     	if ( empty($json) ) {
 
-    		return false;
+    		return;
     	}
     	
     	// decode
@@ -502,14 +585,17 @@ abstract class Lablab_Module_Builder {
     		return $json[0]['fields'];
     	}
 
-    	return false;
+    	return;
 	}
 
+
 	/**
-	 * Load provided php field definition file. Check if 
-	 * @param  [type] $file [description]
-	 * @param  [type] $dir  [description]
-	 * @return [type]       [description]
+	 * Load provided php field definition file. Check if it returns an array that has all the required keys.
+	 *
+	 * @since    1.0.0
+	 * @param    string    $file    Path to a php file or name of such a file (if $dir is set)
+	 * @param    string    $dir     Path to a directory 
+	 * @return   array|null         Either an array containing acf field data or null if validation fails.
 	 */
 	private function validate_php_fields( $file, $dir = null ){
 
@@ -546,12 +632,12 @@ abstract class Lablab_Module_Builder {
 	}
 
 
-
 	/**
 	 * Build the module to be used in lablab builder. A module consists of a column width field and an acf field group defined in the child class.
 	 *
 	 * @since    1.0.0
 	 * @access   private
+	 * @return   array    An associative array holding the fields required for defining an acf flexible content layout.
 	 */
 	private function build_module(){
 
@@ -561,8 +647,8 @@ abstract class Lablab_Module_Builder {
 			return;
 		}
 
-		$this->build_column_width_field();
-		$this->build_module_fields();
+		$this->column_width_field = $this->build_column_width_field();
+		$this->fields = $this->build_module_fields();
 
 		// exit if there are no module-specific fields 
 		if ( empty( $this->fields ) || ! is_array( $this->fields ) ){
@@ -580,8 +666,8 @@ abstract class Lablab_Module_Builder {
 			$this->name = 'lablab-' . sanitize_title( $this->title );
 		}
 			
-		// build the module
-		$this->module = array(
+		// build the module and return it
+		return array(
 			'key' => $this->key,
 			'name' => $this->name,
 			'label' => $this->title,
@@ -616,7 +702,7 @@ abstract class Lablab_Module_Builder {
 	 */
 	public function get_module_fields(){
 		
-		$this->build_module();
+		$this->module = $this->build_module();
 
 		return $this->module;
 	}
