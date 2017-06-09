@@ -6,7 +6,7 @@ Named after a species of [beans](https://en.wikipedia.org/wiki/Lablab), Lablab B
 Lablab Builder is easily extendable by adding content block modules such as sliders, accordions, rich text editors and others (install an available module or create a custom one).
 
 ### Requirements
-A child theme based on [Beans](http://www.getbeans.io/) and [Advanced Custom Fields Pro](https://www.advancedcustomfields.com/pro/) must be installed and activated before activating Lablab Builder. Otherwise Lablab Builder will be automatically deactivated.
+A child theme based on [Beans](http://www.getbeans.io/) and the plugin [Advanced Custom Fields Pro](https://www.advancedcustomfields.com/pro/) must be installed and activated before activating Lablab Builder. Otherwise Lablab Builder will be automatically deactivated.
 
 ### Features
 * easily create content blocks such as sliders, accordions, videos, images, rich text and others
