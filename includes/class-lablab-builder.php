@@ -190,7 +190,6 @@ class Lablab_Builder {
 	private function setup(){
 
 		$this->loader->add_action( 'acf/init', $this, 'load_modules', 5 );
-		$this->loader->add_action( 'acf/init', $this, 'load_module_textdomains' );
 		$this->loader->add_action( 'acf/init', $this, 'build_fields' );
 		$this->loader->add_action( 'acf/init', $this, 'register' );
 	}
@@ -244,6 +243,7 @@ class Lablab_Builder {
 
 	}
 
+
 	/**
 	 * Load and store all registered lablab builder module objects.
 	 *
@@ -258,25 +258,17 @@ class Lablab_Builder {
 
 
 	/**
-	 * Load the textdomain of each module.
+	 * Build the fields that make up the lablab builder acf field group.
 	 *
 	 * @since    1.0.0
 	 * @access   public
 	 */
-	public function load_module_textdomains(){
-
-		foreach ( $this->modules as $module ){
-
-			$module->load_module_textdomain();
-		}
-	}
-
-
 	public function build_fields(){
 
 		$this->field_builder = new Lablab_Field_Builder( $this->modules );
 		$this->field_builder->run();
 	}
+
 
 	/**
 	 * Register lablab builder as acf field group.
@@ -292,6 +284,7 @@ class Lablab_Builder {
 		}
 	}
 
+
 	/**
 	 * Run the loader to execute all of the hooks with WordPress.
 	 *
@@ -300,6 +293,7 @@ class Lablab_Builder {
 	public function run() {
 		$this->loader->run();
 	}
+
 
 	/**
 	 * The name of the plugin used to uniquely identify it within the context of
@@ -312,6 +306,7 @@ class Lablab_Builder {
 		return $this->plugin_name;
 	}
 
+
 	/**
 	 * The reference to the class that orchestrates the hooks with the plugin.
 	 *
@@ -321,6 +316,7 @@ class Lablab_Builder {
 	public function get_loader() {
 		return $this->loader;
 	}
+
 
 	/**
 	 * Retrieve the version number of the plugin.

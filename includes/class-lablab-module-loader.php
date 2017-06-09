@@ -35,6 +35,7 @@ class Lablab_Module_Loader {
 				
 				if ( is_subclass_of( $module_class, 'Lablab_Module_Builder' ) ){
 
+					// create module object
 					$module = new $module_class();
 					
 					// store module objects

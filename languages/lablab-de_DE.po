@@ -1,14 +1,13 @@
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: Lablab Builder Slideshow Module\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-08 09:04+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: \n"
-"Language: \n"
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION\n"
+"POT-Creation-Date: 2017-06-08 09:06+0000\n"
+"PO-Revision-Date: 2017-06-08 10:04+0000\n"
+"Last-Translator: Timo Klemm <klemm@phil.hhu.de>\n"
+"Language-Team: German\n"
+"Language: de-DE\n"
+"Plural-Forms: nplurals=2; plural=n != 1\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -17,101 +16,104 @@ msgstr ""
 #: includes/lablab-builder-options-fields.php:18
 #: admin/class-lablab-builder-admin.php:168
 msgid "Lablab Builder Options"
-msgstr ""
+msgstr "Lablab Builder Optionen"
 
 #: includes/lablab-builder-options-fields.php:22
 msgid "General"
-msgstr ""
+msgstr "Allgemein"
 
 #: includes/lablab-builder-options-fields.php:38
 msgid "Select Post Type"
-msgstr ""
+msgstr "Post Type auswählen"
 
 #: includes/lablab-builder-options-fields.php:41
 msgid "Select the post type(s) you want lablab builder to be associated with."
 msgstr ""
+"Wähle die Post Types aus, mit denen Lablab Builder verknüpft sein soll."
 
 #: includes/lablab-builder-options-fields.php:60
 msgid "Design"
-msgstr ""
+msgstr "Design"
 
 #: includes/lablab-builder-options-fields.php:76
 msgid "Default Column Width"
-msgstr ""
+msgstr "Standard-Spaltenbreite"
 
 #: includes/lablab-builder-options-fields.php:79
 msgid ""
 "Set the default column width option (will be pre-selected when a new module "
 "is added)."
 msgstr ""
+"Standard-Option für die Spaltenbreite (wird vorausgewählt, wenn ein neues "
+"Modul hinzugefügt wird)."
 
 #: includes/lablab-builder-options-fields.php:101
 msgid "Max Content Wrapper Width"
-msgstr ""
+msgstr "Maximale Breite des Inhaltsbereichs"
 
 #: includes/lablab-builder-options-fields.php:104
 msgid "Set the maximum width (in pixels) of the theme's main content wrapper."
-msgstr ""
+msgstr "Die maximale Breite (in Pixeln) des Hauptinhaltsbereichs des Themes."
 
 #: includes/lablab-builder-options-fields.php:122
 msgid "Highlight Color"
-msgstr ""
+msgstr "Highlight-Farbe"
 
 #: includes/lablab-builder-options-fields.php:125
 msgid "Set the color to be used for highlighting."
-msgstr ""
+msgstr "Farbe, die verwendet wird, wenn etwas hervorgehoben werden soll."
 
 #: includes/class-lablab-field-builder.php:88
 msgid "Content Elements"
-msgstr ""
+msgstr "Inhaltselemente"
 
 #: includes/class-lablab-field-builder.php:99
 msgid "Add Module"
-msgstr ""
+msgstr "Modul hinzufügen"
 
 #: includes/class-lablab-field-builder.php:118
 msgid "Sorry, no registered modules found."
-msgstr ""
+msgstr "Es wurden leider keine registrierten Module gefunden."
 
 #: includes/class-lablab-field-builder.php:138
 msgid "Content Area"
-msgstr ""
+msgstr "Inhaltsbereich"
 
 #: includes/class-lablab-field-builder.php:151
 msgid "Add content area"
-msgstr ""
+msgstr "Inhaltsbereich hinzufügen"
 
 #: includes/class-lablab-column-width-options.php:144
 msgid "Current width"
-msgstr ""
+msgstr "Aktuelle Breite"
 
 #: includes/class-lablab-column-width-options.php:145
 msgid "Fills up this row"
-msgstr ""
+msgstr "Füllt diese Reihe auf"
 
 #: includes/class-lablab-column-width-options.php:146
 msgid "Fits in this row"
-msgstr ""
+msgstr "Passt in diese Reihe"
 
 #: includes/class-lablab-column-width-options.php:147
 msgid "Drops to the next row"
-msgstr ""
+msgstr "Springt in die nächste Reihe"
 
 #: includes/class-lablab-column-width-options.php:148
 msgid "Pushes following elements to the next row"
-msgstr ""
+msgstr "Verschiebt nachfolgende Elemente in die nächste Reihe"
 
 #: includes/class-lablab-column-width-options.php:149
 msgid "Fills up the previous row"
-msgstr ""
+msgstr "Füllt die vorhergehende Reihe auf"
 
 #: includes/class-lablab-column-width-options.php:150
 msgid "Moves to the previous row"
-msgstr ""
+msgstr "Rutscht in die vorhergehende Reihe"
 
 #: includes/class-lablab-module-builder.php:453
 msgid "Column Width"
-msgstr ""
+msgstr "Spaltenbreite"
 
 #: admin/class-lablab-builder-admin.php:83
 #, php-format
@@ -120,14 +122,17 @@ msgid ""
 "Please make sure both of them are installed and activated before activating "
 "%1$s. For now, the plugin has been deactivated."
 msgstr ""
+"%1$s benötigt %2$s und ein Child-Theme, das auf %3$s basiert, damit alles "
+"funktioniert. Bitte stell sicher, dass beides installiert und aktiviert ist, "
+"bevor %1$s aktiviert wird. Das Plugin wurde zunächst einmal deaktiviert."
 
 #: admin/class-lablab-builder-admin.php:123
 msgid "Edit layout"
-msgstr ""
+msgstr "Layout bearbeiten"
 
 #. Name of the plugin
 msgid "Lablab Builder"
-msgstr ""
+msgstr "Lablab Builder"
 
 #. Description of the plugin
 msgid ""
@@ -135,15 +140,18 @@ msgid ""
 "flexibility of the Beans framework with the extendability of Advanced Custom "
 "Fields (ACF)."
 msgstr ""
+"Lablab Builder ist ein modulares WordPress Page Builder Plugin, das die "
+"Flexibilität des Beans Frameworks mit der Erweiterbarkeit von Advanced "
+"Custom Fields (ACF) kombiniert."
 
 #. URI of the plugin
 msgid "https://github.com/team-ok/lablab-builder"
-msgstr ""
+msgstr "https://github.com/team-ok/lablab-builder"
 
 #. Author of the plugin
 msgid "Timo Klemm"
-msgstr ""
+msgstr "Timo Klemm"
 
 #. Author URI of the plugin
 msgid "https://github.com/team-ok"
-msgstr ""
+msgstr "https://github.com/team-ok"

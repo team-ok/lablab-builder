@@ -167,26 +167,6 @@ abstract class Lablab_Module_Builder {
 
 
 	/**
-	 * The module-specific text domain used for translation.
-	 *
-	 * @since     1.0.0
-	 * @access    public
-	 * @var       string    $text_domain    The module-specific text domain used for translation.
-	 */
-	public $text_domain;
-
-
-	/**
-	 * Relative path to WP_PLUGIN_DIR where the .mo file resides.
-	 *
-	 * @since     1.0.0
-	 * @access    public
-	 * @var       string    $domain_path    Relative path to WP_PLUGIN_DIR where the .mo file resides.
-	 */
-	public $domain_path;
-
-
-	/**
 	 * A field that allows to set the width of a grid column. Gets attached to each module. 
 	 * This property is not module-specific and therefore can't be overwritten by a subclass.
 	 * @since 	1.0.0
@@ -194,6 +174,7 @@ abstract class Lablab_Module_Builder {
 	 * @var   	array    $column_width_field    A field that allows to set the width of a grid column.
 	 */
 	private $column_width_field;
+
 
 	/**
 	 * The module to be loaded as a flexible content layout in lablab builder.
@@ -257,6 +238,7 @@ abstract class Lablab_Module_Builder {
 		$this->enqueue_assets( $this->public_js, 'js' );
 		
 	}
+
 
 	/**
 	 * Enqueue stylesheets on public pages, but only when the module is being used.
@@ -449,7 +431,7 @@ abstract class Lablab_Module_Builder {
 		$options = new Lablab_Column_Width_Options();
 
 		$column_width_field = array(
-			'key' => 'field_lablab_column_width_' . sanitize_title( $this->title ),
+			'key' => 'field_lablab_column_width_' . $this->name,
 			'label' => __('Column Width', 'lablab'),
 			'name' => 'lablab-column-width',
 			'type' => 'select',
@@ -641,8 +623,8 @@ abstract class Lablab_Module_Builder {
 	 */
 	private function build_module(){
 
-		// bail early if the module's title is missing
-		if ( empty( $this->title ) ){
+		// bail early if a required property is missing
+		if ( ! isset( $this->title ) || empty( $this->name ) || empty( $this->key ) ){
 
 			return;
 		}
@@ -655,16 +637,6 @@ abstract class Lablab_Module_Builder {
 
 			return;
 		}
-
-		// generate title-based key if none is provided
-		if ( empty( $this->key ) ){
-			$this->key = 'field_lablab_' . sanitize_title( $this->title );
-		}
-
-		// generate title-based name if none is provided
-		if ( empty( $this->name ) ){
-			$this->name = 'lablab-' . sanitize_title( $this->title );
-		}
 			
 		// build the module and return it
 		return array(
@@ -675,21 +647,6 @@ abstract class Lablab_Module_Builder {
 			'sub_fields' => array_merge( array($this->column_width_field), $this->fields ),
 		);
 		
-	}
-
-
-	/**
-	 * Load the plugin text domain for translation.
-	 *
-	 * @since    1.0.0
-	 * @access   public
-	 */
-	public function load_module_textdomain() {
-
-		if ( isset( $this->text_domain ) && isset( $this->domain_path ) ){
-			load_plugin_textdomain( $this->text_domain, false, $this->domain_path );
-		}
-
 	}
 
 

@@ -119,7 +119,10 @@ class Lablab_Builder_Admin {
 
 		wp_enqueue_script( 'lablab_builder_admin', plugin_dir_url( __FILE__ ) . 'js/lablab-builder-admin.js', array( 'jquery' ), $this->version, false );
 		wp_enqueue_script( 'lablab_acf_fc_modal', plugin_dir_url( __FILE__ ) . 'js/lablab-acf-fc-modal.js', array('jquery'), $this->version, false );
-		
+		wp_localize_script( 'lablab_acf_fc_modal', 'lablabModal', array(
+				'editLayout' => __( 'Edit layout', 'lablab' ),
+			) 
+		);
 		wp_enqueue_script( 'lablab_acf_fc_grid_layout', plugin_dir_url( __FILE__ ) . 'js/lablab-acf-fc-grid-layout.js', array('jquery'), $this->version, false );
 		wp_localize_script( 'lablab_acf_fc_grid_layout', 'lablabColumnWidthOptions', array(
 				'options' => $this->column_width_options->get_column_width_options(),

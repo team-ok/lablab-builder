@@ -40,10 +40,10 @@
 			// Edit button
 			var controls = layout.find('> .acf-fc-layout-controlls');
 			if (controls.is('ul')){
-				controls.append('<li><a class="acf-icon -pencil small" href="#" data-event="edit-layout" title="Edit layout"></a></li>');
+				controls.append('<li><a class="acf-icon -pencil small" href="#" data-event="edit-layout" title="'+lablabModal.editLayout+'"></a></li>');
 			}
 			else {
-				controls.append('<a class="acf-icon -pencil small" href="#" data-event="edit-layout" title="Edit layout"></a>');
+				controls.append('<a class="acf-icon -pencil small" href="#" data-event="edit-layout" title="'+lablabModal.editLayout+'"></a>');
 			}
 
 			
