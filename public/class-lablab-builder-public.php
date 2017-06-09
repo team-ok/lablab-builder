@@ -96,22 +96,23 @@ class Lablab_Builder_Public {
 
 	public function enqueue_options_styles_less_fragment(){
 
-		beans_compiler_add_fragment( 'uikit', array( array( $this, 'get_options_styles_as_less_fragment' ) ), 'less' );
+		beans_compiler_add_fragment( 'uikit', array( array( __CLASS__, 'get_options_styles_as_less_fragment' ) ), 'less' );
 	}
 
-	public function get_options_styles(){
+	public static function get_options_styles(){
 
-		$this->options_styles = array(
+		return array(
 			'lablab-highlight-color' => ( ! empty( get_field( 'lablab_highlight_color', 'options' ) ) ? get_field( 'lablab_highlight_color', 'options' ) : '#2179bd' ),
 		);
 	}
 
-	public function get_options_styles_as_less_fragment(){
-		return '@lablab-highlight-color: ' . $this->options_styles['lablab-highlight-color'] . ';';
+	public static function get_options_styles_as_less_fragment(){
+		$style = self::get_options_styles();
+		return '@lablab-highlight-color: ' . $style['lablab-highlight-color'] . ';';
 	}
 
 	public function add_compiler_cache_version( $args ){
-		$args['lablab_options_styles'] = substr(md5( @serialize( $this->options_styles ) ), 0, 7);
+		$args['lablab_options_styles'] = md5( @serialize( self::get_options_styles() ) );
 
 		return $args;
 	}
