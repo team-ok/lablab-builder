@@ -170,6 +170,10 @@ class Lablab_Builder_Public {
 		$this->loop->run_loop();
 
 		$this->active_modules = array_keys( $this->loop->get_active_modules() );
+
+		// sort array to prevent Beans Compiler from recompiling
+		// when only the order of modules in the loop did change
+		sort( $this->active_modules );
 	}
 
 }
