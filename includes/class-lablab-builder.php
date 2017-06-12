@@ -81,6 +81,7 @@ class Lablab_Builder {
 		$this->setup();
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
+		$this->set_dynamic_less_vars();
 
 	}
 
@@ -157,6 +158,12 @@ class Lablab_Builder {
 		 * The class responsible for setting up the plugin's main acf field group.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-lablab-field-builder.php';
+
+
+		/**
+		 * The class responsible for setting up global LESS vars dynamically
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-lablab-dynamic-less-vars.php';
 
 		/**
 		 * A class providing static utility methods that can be used throughout lablab builder.
@@ -235,10 +242,7 @@ class Lablab_Builder {
 		$this->loader->add_action( 'wp', $plugin_public, 'loop' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
-		$this->loader->add_filter( 'beans_uikit_euqueued_styles_args', $plugin_public, 'add_compiler_cache_version' );
 		$this->loader->add_action( 'beans_uikit_enqueue_scripts', $plugin_public, 'enqueue_uikit_scripts' );
-		$this->loader->add_action( 'beans_uikit_enqueue_scripts', $plugin_public, 'get_options_styles' );
-		$this->loader->add_action( 'beans_uikit_enqueue_scripts', $plugin_public, 'enqueue_options_styles_less_fragment', 5 );
 		$this->loader->add_action( 'beans_post_content_append_markup', $plugin_public, 'add_loop_content' );
 
 	}
@@ -282,6 +286,21 @@ class Lablab_Builder {
 
 			acf_add_local_field_group( $this->field_builder->get_fields() );
 		}
+	}
+
+	/**
+	 * Get style settings from Lablab Builder Options Page and set up global LESS vars to be used by modules.
+	 *
+	 * @since    1.0.0
+	 * @access   public
+	 */
+	public function set_dynamic_less_vars(){
+
+		$dynamic_less_vars = new Lablab_Dynamic_LESS_Vars();
+
+		$this->loader->add_action( 'init', array( $dynamic_less_vars, 'load_options_styles' );
+		$this->loader->add_action( 'beans_uikit_enqueue_scripts', array( $dynamic_less_vars, 'enqueue_options_styles_less_fragment', 5 );
+		$this->loader->add_filter( 'beans_uikit_euqueued_styles_args', $dynamic_less_vars, 'add_compiler_cache_version' );
 	}
 
 
