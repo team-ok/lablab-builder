@@ -237,7 +237,7 @@ class Lablab_Builder {
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 		$this->loader->add_filter( 'beans_uikit_euqueued_styles_args', $plugin_public, 'add_compiler_cache_version' );
 		$this->loader->add_action( 'beans_uikit_enqueue_scripts', $plugin_public, 'enqueue_uikit_scripts' );
-		$this->loader->add_action( 'beans_uikit_enqueue_scripts', $plugin_public, 'get_options_styles' );
+		// $this->loader->add_action( 'beans_uikit_enqueue_scripts', $plugin_public, 'get_options_styles' );
 		$this->loader->add_action( 'beans_uikit_enqueue_scripts', $plugin_public, 'enqueue_options_styles_less_fragment', 5 );
 		$this->loader->add_action( 'beans_post_content_append_markup', $plugin_public, 'add_loop_content' );
 
