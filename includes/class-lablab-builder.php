@@ -298,8 +298,8 @@ class Lablab_Builder {
 
 		$dynamic_less_vars = new Lablab_Dynamic_LESS_Vars();
 
-		$this->loader->add_action( 'init', array( $dynamic_less_vars, 'load_options_styles' );
-		$this->loader->add_action( 'beans_uikit_enqueue_scripts', array( $dynamic_less_vars, 'enqueue_options_styles_less_fragment', 5 );
+		$this->loader->add_action( 'init', $dynamic_less_vars, 'load_options_styles' );
+		$this->loader->add_action( 'beans_uikit_enqueue_scripts', $dynamic_less_vars, 'enqueue_options_styles_less_fragment', 5 );
 		$this->loader->add_filter( 'beans_uikit_euqueued_styles_args', $dynamic_less_vars, 'add_compiler_cache_version' );
 	}
 
